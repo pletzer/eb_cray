@@ -32,6 +32,8 @@ module use $EASYBUILD_PREFIX/modules/all
 module load EasyBuild
 ```
 
+Note: Some modules require the easyblocks delivered with easybuild to be modified. To tell easybuild how to find your own version of those easyblocks you can follow the instructions at [https://github.com/easybuilders/easybuild/wiki/Setting-up-your-own-easyblocks-repository]. This assumes the directory above easyblocks is called easybuild. Alternatively you can just copy the easyblock to the relevant site-packages directory.
+
  4. Install toolchains for Cray, Intel and GNU compilers
 
 In the eb_cray directory
