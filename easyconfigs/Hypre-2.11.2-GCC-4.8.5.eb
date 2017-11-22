@@ -1,10 +1,13 @@
+easyblock = 'ConfigureMake'
+
 name = 'Hypre'
 version = '2.11.2'
 
-homepage = "https://computation.llnl.gov/casc/linear_solvers/sls_hypre.html"
+homepage = 'https://computation.llnl.gov/casc/linear_solvers/sls_hypre.html'
 description = """Hypre is a library for solving large, sparse linear systems of equations on massively parallel computers.
  The problems of interest arise in the simulation codes being developed at LLNL and elsewhere 
- to study physical phenomena in the defense, environmental, energy, and biological sciences."""
+ to study physical phenomena in the defense, environmental, energy, and biological sciences.
+"""
 
 toolchain = {'name': 'GCC', 'version': '4.8.5'}
 toolchainopts = {'pic': True}
@@ -14,10 +17,19 @@ sources = [SOURCELOWER_TAR_GZ]
 
 start_dir = 'src'
 
+dependencies = [
+   ('mpich/ge/gcc/64/3.2', EXTERNAL_MODULE),
+   ('lapack/gcc/64/3.7.0', EXTERNAL_MODULE),
+   ('blas/gcc/64/3.7.0', EXTERNAL_MODULE),
+]
+
+preconfigopts = "CC=mpicc CXX=mpicxx "
+
+configopts = "--with-MPI --with-lapack-lib-dirs=$LAPACK_DIR --with-lapack-libs=lapack --with-blas-lib-dirs=$BLASDIR --with-blas-libs=blas"
+
 sanity_check_paths = {
     'files': ['lib/libHYPRE.a'],
-    'dirs': ['include']
+    'dirs': ['include'],
 }
 
 moduleclass = 'numlib'
-
