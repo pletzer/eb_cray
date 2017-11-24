@@ -16,7 +16,8 @@ sources = [SOURCELOWER_TAR_GZ]
 
 # (build) dependencies provided through EasyBuild
 builddependencies = [('CMake', '3.10.0-rc5')]
-dependencies = [('hdf5_18/1.8.18', EXTERNAL_MODULE),
+dependencies = [('imkl', '2018.1.163'),
+                ('hdf5_18/1.8.18', EXTERNAL_MODULE),
                 ('mpich/ge/gcc/64/3.2', EXTERNAL_MODULE)]
 
 # external packages that are downloaded with --download-<package>=1 and --download-<package>-static=1
@@ -26,7 +27,7 @@ download_deps_static = ['hypre', 'metis', 'ml', 'mumps', 'parmetis', 'prometheus
 download_deps = ['triangle']
 
 configopts = "--with-mkl_pardiso=1 --with-mkl_pardiso-dir=$MKLROOT "
-configopts += "--with-hdf5=1 --with-hdf5-dir=$EBROOTHDF5 "
+configopts += "--with-hdf5=1 --with-hdf5-dir=$HDF5DIR "
 configopts += "--with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90 "
 
 shared_libs = True
