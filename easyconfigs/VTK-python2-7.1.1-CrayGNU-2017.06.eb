@@ -22,7 +22,7 @@ description = """The Visualization Toolkit (VTK) is an open-source, freely avail
  algorithms including: scalar, vector, tensor, texture, and volumetric methods; and advanced modeling techniques
  such as: implicit modeling, polygon reduction, mesh smoothing, cutting, contouring, and Delaunay triangulation."""
 
-toolchain = {'name': 'GCC', 'version': '4.8.5'}
+toolchain = {'name': 'CrayGNU', 'version': '2017.06'}
 
 source_urls = ['http://www.vtk.org/files/release/%(version_major_minor)s']
 sources = [
@@ -30,17 +30,15 @@ sources = [
     'VTKData-%(version)s.tar.gz',
 ]
 
-builddependencies = [('CMake', '3.10.0-rc5')]
+osdependencies = [('cmake')]
 
 dependencies = [
-    ('Anaconda2', '4.2.0'),
+    ('Anaconda2', '5.0.1'),
 ]
 
 configopts = "-DCMAKE_BUILD_TYPE=Release -DVTK_WRAP_PYTHON=ON "
 configopts += "-DPYTHON_LIBRARY=$EBROOTANACONDA2/lib/libpython2.7.%s " % SHLIB_EXT
 configopts += " -DPYTHON_INCLUDE_DIR=$EBROOTANACONDA2/include/python2.7 "
-configopts += " -DVTK_USE_SYSTEM_HDF5=ON -DHDF5_INCLUDE_DIRS=$EBROOTANACONDA2/include -DHDF5_LIBRARIES=$EBROOTANACONDA2/lib/libhdf5.so "
-
 preinstallopts = "mkdir -p $EBROOTANACONDA2/lib/python2.7/site-packages/ && "
 preinstallopts += "export PYTHONPATH=$EBROOTANACONDA2/lib/python2.7/site-packages:$PYTHONPATH && "
 

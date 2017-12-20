@@ -1,2 +1,5 @@
 easyconfigs/*.eb.bak_*
 *~
+*.gz
+*.tgz
+*.tar

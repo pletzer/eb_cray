@@ -39,6 +39,8 @@ dependencies = [
 configopts = "-DCMAKE_BUILD_TYPE=Release -DVTK_WRAP_PYTHON=ON "
 configopts += "-DPYTHON_LIBRARY=$EBROOTANACONDA2/lib/libpython2.7.%s " % SHLIB_EXT
 configopts += " -DPYTHON_INCLUDE_DIR=$EBROOTANACONDA2/include/python2.7 "
+configopts += " -DVTK_USE_SYSTEM_HDF5=ON -DHDF5_INCLUDE_DIRS=$EBROOTANACONDA2/include -DHDF5_LIBRARIES=$EBROOTANACONDA2/lib/libhdf5.so "
+
 preinstallopts = "mkdir -p $EBROOTANACONDA2/lib/python2.7/site-packages/ && "
 preinstallopts += "export PYTHONPATH=$EBROOTANACONDA2/lib/python2.7/site-packages:$PYTHONPATH && "
 

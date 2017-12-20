@@ -30,6 +30,7 @@ postinstallcmds = [prep_env + "pip install netCDF4==1.3.1", # not able to get co
                    prep_env + "conda install -f -p %(installdir)s -c pelson pyshp=1.2.1",
                    prep_env + "conda install -f -p %(installdir)s -c pelson/label/development2 pyshp", 
                    prep_env + "conda install -f -p %(installdir)s -c scitools proj.4=4.9.1",         
+                   prep_env + "conda install -f -p %(installdir)s -c anaconda pyproj=1.9.5.1",
                    prep_env + "conda install -f -p %(installdir)s -c conda-forge cartopy=0.15.1",
                    prep_env + "conda install -f -p %(installdir)s -c conda-forge cf_units=1.1.3",
                    prep_env + "conda install -f -p %(installdir)s -c conda-forge udunits2=2.2.25",
