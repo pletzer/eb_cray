@@ -46,6 +46,11 @@ postinstallcmds = [prep_env + "pip install netCDF4==1.3.1", # not able to get co
                    prep_env + "conda install -f -p %(installdir)s -c anaconda django=1.11.3",
                    prep_env + "conda install -f -p %(installdir)s -c anaconda pyzmq=16.0.3",
                    prep_env + "conda install -f -p %(installdir)s -c anaconda mock=2.0.0",
+                   prep_env + "conda install -f -p %(installdir)s -c conda-forge setproctitle=1.1.10",
+                   prep_env + "conda install -f -p %(installdir)s -c indico prctl=1.0.1",
+                   prep_env + "conda install -f -p %(installdir)s -c ioos rtree=0.8.2",
+                   prep_env + "conda install -f -p %(installdir)s -c conda-forge celery=4.1.0",
+                   prep_env + "conda install -f -p %(installdir)s -c binstar python-pam=1.8.2",
 ]
 
 moduleclass = 'lang'
