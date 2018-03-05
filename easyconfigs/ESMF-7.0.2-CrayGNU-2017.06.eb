@@ -1,0 +1,28 @@
+name = 'ESMF'
+version = '7.0.2'
+
+# Note: This recipe relies on an updated version of the esmf.py script so that it runs 
+# on cray. You will need to copy ../easyblocks/esmf.py to
+# $EBROOTEASYBUILD/lib/python2.7/site-packages/easybuild_easyblocks-3.4.0-py2.7.egg/easybuild/easyblocks/e/
+
+homepage = 'http://sourceforge.net/projects/esmf'
+description = """The Earth System Modeling Framework (ESMF) is software for building and coupling weather,
+ climate, and related models."""
+
+toolchain = {'name': 'CrayGNU', 'version': '2017.06'}
+toolchainopts = {'usempi': True}
+
+source_urls = [SOURCEFORGE_SOURCE]
+sources = ['%%(namelower)s_%s_src.tar.gz' % '_'.join(version.split('.'))]
+patches = []
+checksums = ['73824e007db6af518b1b8f7fdb8d6a106f999de22916d181455ebd7dec750c08']
+
+dependencies = [
+    ('cray-hdf5/1.10.1.1', EXTERNAL_MODULE),
+    ('cray-netcdf/4.4.1.1.6', EXTERNAL_MODULE),
+    ('cray-libsci/17.09.1', EXTERNAL_MODULE),
+]
+
+buildopts = 'ESMF_OS=Unicos ESMF_COMPILER=gfortran ESMF_COMM=mpi ESMF_ABI=64'
+
+moduleclass = 'geo'
