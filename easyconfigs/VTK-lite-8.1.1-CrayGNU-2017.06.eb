@@ -1,0 +1,40 @@
+easyblock = 'CMakeMake'
+
+name = 'VTK-lite'
+version = '8.1.1'
+
+homepage = 'http://www.vtk.org'
+description = """The Visualization Toolkit (VTK) is an open-source, freely available software system for
+ 3D computer graphics, image processing and visualization. VTK consists of a C++ class library and several
+ interpreted interface layers including Tcl/Tk, Java, and Python. VTK supports a wide variety of visualization
+ algorithms including: scalar, vector, tensor, texture, and volumetric methods; and advanced modeling techniques
+ such as: implicit modeling, polygon reduction, mesh smoothing, cutting, contouring, and Delaunay triangulation.
+
+This version of VTK has rendering turned off -- users can link against this library to leverage its algorithms 
+but they will not be able to render.
+"""
+
+toolchain = {'name': 'CrayGNU', 'version': '2017.06'}
+
+source_urls = ['http://www.vtk.org/files/release/%(version_major_minor)s']
+sources = [
+    'VTK-%(version)s.tar.gz',
+    'VTKData-%(version)s.tar.gz',
+]
+
+builddependencies = [('CMake', '3.12.0')]
+
+dependencies = []
+
+preconfigopts = 'export CRAYPE_LINK_TYPE=dynamic && '
+configopts  = "-DCMAKE_BUILD_TYPE=Release -DVTK_Group_Rendering=OFF -DVTK_Group_Standalone=ON "
+
+sanity_check_paths = {
+    'files': ['bin/vtk%s-%%(version_major_minor)s' % x for x in ['EncodeString', 'HashSource']],
+    'dirs': ['include/vtk-%(version_major_minor)s'],
+}
+
+#sanity_check_commands = [('python', "-c 'import vtk'")]
+
+moduleclass = 'lib'
+

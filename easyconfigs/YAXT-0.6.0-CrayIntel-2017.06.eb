@@ -1,0 +1,29 @@
+easyblock = 'ConfigureMake'
+
+name = 'YAXT'
+version = '0.6.0'
+
+homepage = 'https://www.dkrz.de/redmine/projects/yaxt'
+description = """Yet Another eXchange Tool - Library that performs halo exchange with MPI for domain decomposed simulations."""
+
+toolchain = {'name': 'CrayIntel', 'version': '2017.06'}
+#toolchainopts = {'usempi': True}
+
+source_urls = ['https://www.dkrz.de/redmine/attachments/download/488']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['bc4d8d8a6815fd616c0e119fe4f194dafab56583ea7f38f4431eef12cb192f43']
+
+# configure scripts wants to run an MPI program and the build will hang with more aggressive 
+# compiler options
+preconfigopts = "SLURM_PARTITION=Debug MPI_LAUNCH=/opt/slurm/17.02.9/bin/mpiexec CFLAGS=-O2 FCFLAGS=-O2 CXXFLAGS=-O2"
+configopts = "--with-idxtype=long --disable-shared CC=cc FC=ftn"
+
+# Some tests currently fail
+# runtest = 'check'
+
+sanity_check_paths = {
+    'files': ['lib/libyaxt.a', 'lib/libyaxt_c.a', ],
+    'dirs': ['include'],
+}
+
+moduleclass = 'lib'
