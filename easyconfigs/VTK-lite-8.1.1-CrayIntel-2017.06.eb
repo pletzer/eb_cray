@@ -26,15 +26,7 @@ builddependencies = [('CMake', '3.12.0')]
 
 dependencies = []
 
-configopts  = "-DCMAKE_BUILD_TYPE=Release -DVTK_Group_Rendering=OFF -DVTK_Group_Standalone=OFF "
-configopts += "-DModule_vtkChartsCore:BOOL=ON -DModule_vtkCommonColor:BOOL=ON "
-configopts += "-DModule_vtkCommonCore:BOOL=ON -DModule_vtkCommonDataModel:BOOL=ON -DModule_vtkCommonTransforms:BOOL=ON "
-configopts += "-DModule_vtkFiltersCore:BOOL=ON -DModule_vtkCommonMath:BOOL=ON -DModule_vtkCommonExecutionModel:BOOL=ON "
-configopts += "-DModule_vtkIOCore:BOOL=ON -DModule_vtkIOLegacy:BOOL=ON "
-configopts += "-DModule_vtkImagingCore:BOOL=ON "
-configopts += "-DModule_vtkCommonSystem:BOOL=ON -DModule_vtksys:BOOL=ON "
-configopts += "-DModule_vtkCommonMisc:BOOL=ON "
-
+configopts  = "-DCMAKE_BUILD_TYPE=Release -DVTK_Group_Rendering=OFF -DVTK_Group_Standalone=ON "
 sanity_check_paths = {
     'files': ['bin/vtk%s-%%(version_major_minor)s' % x for x in ['EncodeString', 'HashSource']],
     'dirs': ['include/vtk-%(version_major_minor)s'],
