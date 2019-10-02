@@ -1,0 +1,27 @@
+easyblock = 'ConfigureMake'
+
+name = 'nccmp'
+version = '1.8.2.1'
+
+homepage = "http://nccmp.sourceforge.net/"
+description = """nccmp compares two NetCDF files bitwise, semantically or with a user defined tolerance (absolute or relative percentage). Parallel comparisons are done in local memory without requiring temporary files. Highly recommended for regression testing scientific models or datasets in a test-driven development environment."""
+
+toolchain = {'name': 'CrayGNU', 'version': '2017.06'}
+
+source_urls = [SOURCEFORGE_SOURCE]
+sources = ['%(name)s-%(version)s.tar.gz']
+checksums = ['5bbde05f402aa909480436247165eb0c3681bc53e931b6342af808fd59636c8b']
+
+dependencies = [
+    ('cray-hdf5/1.10.1.1', EXTERNAL_MODULE),
+    ('cray-netcdf/4.4.1.1.6', EXTERNAL_MODULE),
+]
+
+runtest = 'check'
+
+sanity_check_paths = {
+    'files': ['bin/nccmp'],
+    'dirs': [],
+}
+
+moduleclass = 'tools'

@@ -1,0 +1,52 @@
+easyblock = 'MakeCp'
+
+name = 'cylc'
+version = '7.7.2'
+
+homepage = 'http://cylc.github.io/cylc'
+description = """Cylc is a workflow engine for cycling systems - it orchestrates complex
+distributed suites of interdependent cycling tasks that may continue indefinitely
+(Cylc dynamically generates ongoing workflows)."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['https://github.com/cylc/cylc/archive']
+sources = ['%(version)s.tar.gz']
+
+files_to_copy = ['*']
+
+# Cylc uses a wrapper to choose between versions, which relies on these
+# env variables
+modextravars = {
+    'CYLC_VERSION': '%(version)s',
+}
+
+# Set location of Cylc wrapper
+
+# Prevent EasyBuild from prepending PATH variable and
+# adapt Cylc wrapper to EasyBuild conventions
+# NOTE: These commands expect the Cylc wrapper to be installed,
+#       see <cylc source>/admin/cylc-wrapper for further information!
+postinstallcmds = [
+    'mv %(installdir)s/bin %(installdir)s/bin_',
+    'ln -s /opt/niwa/um_sys_prelim/etc/cylc/global.rc_cylc-%(version)s %(installdir)s/conf/global.rc',
+     # Check if VERSION file was created correctly (must only contain Cylc version number)
+    'grep -q "^%(version)s$" %(installdir)s/VERSION'
+]
+
+# These commands should be run when Cylc is first installed, or to update the default version:
+# cylc_wrapper_dir = '/opt/niwa/share_prelim/bin'
+# postinstallcmds = [
+#    'sed -i "s;CYLC_HOME_ROOT/cylc-;CYLC_HOME_ROOT/;" ' + cylc_wrapper_dir + '/cylc',
+#    'sed -i "s;/home/admin/cylc;%(installdir)s/..;" ' + cylc_wrapper_dir + '/cylc',
+#    'sed -i "s;CYLC_HOME/bin/;CYLC_HOME/bin_/;" ' + cylc_wrapper_dir + '/cylc',
+#    'ln -s %(installdir)s %(installdir)s/../cylc',
+# ]
+
+# Check if Cylc and the Cylc wrapper exist
+sanity_check_paths = {
+    'files': ['bin_/cylc'],
+    'dirs': ['lib'],
+}
+
+moduleclass = 'geo'

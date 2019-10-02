@@ -21,6 +21,10 @@ sources = [
     'VTK-%(version)s.tar.gz',
     'VTKData-%(version)s.tar.gz',
 ]
+checksums = [
+    '71a09b4340f0a9c58559fe946dc745ab68a866cf20636a41d97b6046cb736324',  # VTK-8.1.1.tar.gz
+    'e16c2d665f052b6aeb981aea17f0309849e661a0038e18c9880bd6e6519c4fcc',  # VTKData-8.1.1.tar.gz
+]
 
 builddependencies = [('CMake', '3.12.0')]
 

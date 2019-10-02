@@ -1,0 +1,23 @@
+# Jorge Bornemann
+import os.path
+
+name = 'splat'
+version = '1.0.5'
+
+homepage = 'http://niwa.co.nz'
+description = """Splat deploys (builds and installs) the components of heterogenous systems such as cylc suites, described by splat config files, into target directory trees."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+# must save tarball under s/splat/splat-1.0.4.tgz
+# Tarball to be sourced from https://git.niwa.local/oliverh/splat/repository/archive.tar.gz?ref=1.0.5
+source_urls = ['file://s/splat']
+sources = ['splat-%(version)s.tar.gz']
+
+easyblock = 'Tarball'
+
+skipsteps = ['configure', 'build', 'test']
+
+files_to_copy = ['bin','conf','examples','lib']
+
+moduleclass = 'tools'
